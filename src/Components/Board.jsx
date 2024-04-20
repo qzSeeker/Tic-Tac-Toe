@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 function Square({value,onSquareClick}) {
-    return <div onClick={onSquareClick} className="h-14 w-14 cursor-pointer border-4 border-black text-4xl flex justify-center items-center">{value}</div>;
+    return <div onClick={onSquareClick} className="h-16 w-16 md:w-28 md:h-28 cursor-pointer rounded-lg border-4 bg-white/50 hover:border-white transition-all ease-in text-4xl flex justify-center items-center shadow-xl">{value}</div>;
 
 }
 
@@ -36,9 +36,9 @@ function Board() {
         }
         const nextSquares = squares.slice();
         if(xIsNext) {
-            nextSquares[i] = "🤡";
+            nextSquares[i] = "🥞";
         } else {
-            nextSquares[i] = "👽";
+            nextSquares[i] = "🥗";
         }
         setSquares(nextSquares);
         setXIsNext(!xIsNext);
@@ -49,22 +49,28 @@ function Board() {
     if(winner) {
         status = "Winner: " + winner;
     } else {
-        status = "Next player: " + (xIsNext? "🤡" : "👽");
+        status = "Player: " + (xIsNext? "🥞" : "🥗")
     }
 
     return (
         <div className="w-full flex flex-col justify-center items-center h-dvh">
-            <div className="text-xl mb-12 font-semibold">{status}</div>
-            <div className="w-max grid grid-cols-3 gap-1 grid-flow-row">
-                <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
-                <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
-                <Square value={squares[2]} onSquareClick={() => handleClick(2)} />
-                <Square value={squares[3]} onSquareClick={() => handleClick(3)} />
-                <Square value={squares[4]} onSquareClick={() => handleClick(4)} />
-                <Square value={squares[5]} onSquareClick={() => handleClick(5)} />
-                <Square value={squares[6]} onSquareClick={() => handleClick(6)} />
-                <Square value={squares[7]} onSquareClick={() => handleClick(7)} />
-                <Square value={squares[8]} onSquareClick={() => handleClick(8)} />
+            <div className="h-max w-max p-6 rounded-lg bg-blue-400 flex flex-col justify-center items-center shadow-xl">
+                <div className="w-full h-max p-4 text-2xl mb-6 font-semibold bg-white/50 rounded-lg shadow-md">
+                        <ul className="flex justify-around gap-2">
+                            <li className="bg-white rounded-md py-1 px-8">{status}</li>
+                        </ul>
+                </div>
+                <div className="w-max grid grid-cols-3 gap-2 grid-flow-row">
+                    <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
+                    <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
+                    <Square value={squares[2]} onSquareClick={() => handleClick(2)} />
+                    <Square value={squares[3]} onSquareClick={() => handleClick(3)} />
+                    <Square value={squares[4]} onSquareClick={() => handleClick(4)} />
+                    <Square value={squares[5]} onSquareClick={() => handleClick(5)} />
+                    <Square value={squares[6]} onSquareClick={() => handleClick(6)} />
+                    <Square value={squares[7]} onSquareClick={() => handleClick(7)} />
+                    <Square value={squares[8]} onSquareClick={() => handleClick(8)} />
+                </div>
             </div>
         </div>
     );
